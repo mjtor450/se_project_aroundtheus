@@ -5,6 +5,7 @@
   padding-left: 16px;
   padding-bottom: 45px;
   max-width: 880px;
+  margin: 0 auto;
 }
 
 .profile__info {
@@ -23,6 +24,7 @@
   width: 24px;
   grid-area: button;
   border: 1px;
+  padding-right: 45px;
 }
 
 .profile__add-button {
@@ -65,4 +67,27 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
 }
