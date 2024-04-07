@@ -38,30 +38,13 @@
 }
 
 .card__like-button:hover {
-  background: transparent url(../images/Heart+Hover.svg) center no-repeat;
+  opacity: 0.5;
 }
 
-.card__title-1 {
+.card__title {
   font-size: 24px;
   font-weight: 900;
-}
-.card__title-2 {
-  font-size: 24px;
-  font-weight: 900;
-}
-.card__title-3 {
-  font-size: 24px;
-  font-weight: 900;
-}
-.card__title-4 {
-  font-size: 24px;
-  font-weight: 900;
-}
-.card__title-5 {
-  font-size: 24px;
-  font-weight: 900;
-}
-.card__title-6 {
-  font-size: 24px;
-  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
