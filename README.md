@@ -18,3 +18,5 @@ Use of flexbox and grid layout for creating responsive and flexible designs
 ![1280 resolution of project](./images/1280_dimensions.png)
 
 LINK: https://mjtor450.github.io/se_project_aroundtheus/
+
+VIDEO: https://drive.google.com/file/d/1geenpvTls7aBvwSGLVDmg3VW2rxXKr4l/view?usp=drive_link
