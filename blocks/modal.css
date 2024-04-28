@@ -1,0 +1,117 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  padding: 0 19px;
+  /* display: none; */
+  display: flex;
+}
+
+.modal_opened {
+  display: flex;
+}
+
+.modal__container {
+  position: relative;
+  background-color: #fff;
+  margin: auto;
+  padding: 34px 36px 36.51px;
+  border-radius: 10px;
+  width: 430px;
+  height: 330px;
+  box-sizing: border-box;
+}
+
+.modal__close {
+  background-image: url(../images/closeIcon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+}
+
+.modal__heading {
+  margin-bottom: 54px;
+  color: #000;
+  font-family: "Inter", sans-serif, Helvetica;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  width: 330px;
+  height: 23px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__form input[type="text"] {
+  height: 27px;
+  margin: 0;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.modal__title {
+  color: #000;
+  font-family: "Inter", sans-serif, Helvetica;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+.modal__description {
+  color: #000;
+  font-family: "Inter", sans-serif, Helvetica;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+.modal__button {
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+  height: 50.15px;
+  border: 0;
+  padding: 0;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif, Helvetica;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+  text-align: center;
+}
+/* move close button at 630px width */
+
+@media (max-width: 630px) {
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    bottom: calc(100% + 13.62px);
+    left: calc(100% + -19px);
+  }
+}
+
+@media (max-width: 440px) {
+  .modal__container {
+    width: 282px;
+    height: 322px;
+  }
+
+  .modal__close {
+    left: calc(100% + -30px);
+  }
+}
