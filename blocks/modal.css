@@ -111,6 +111,7 @@
   .modal__container {
     width: 282px;
     height: 322px;
+    padding: 0px 22px 25px;
   }
 
   .modal__close {
@@ -127,6 +128,7 @@
     font-size: 18px;
     line-height: 21.78px;
     text-align: left;
+    margin-top: 25px;
   }
 
   .modal__button {
@@ -135,5 +137,6 @@
     font-weight: 400;
     line-height: 16.94px;
     text-align: center;
+    margin-top: 25px;
   }
 }
