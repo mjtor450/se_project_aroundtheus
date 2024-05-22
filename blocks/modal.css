@@ -61,6 +61,7 @@
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid #000;
+  font-family: "Inter", sans-serif, Helvetica;
 }
 
 .modal__title {
@@ -93,8 +94,10 @@
   line-height: 21.78px;
   text-align: center;
 }
-/* move close button at 630px width */
 
+.modal__input {
+  font-family: "Inter", sans-serif, Helvetica;
+}
 @media (max-width: 630px) {
   .modal__close {
     width: 26px;
@@ -112,5 +115,25 @@
 
   .modal__close {
     left: calc(100% + -30px);
+  }
+
+  .modal__heading {
+    width: 238px;
+    height: 22px;
+    top: 148px;
+    left: 41px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 18px;
+    line-height: 21.78px;
+    text-align: left;
+  }
+
+  .modal__button {
+    font-family: "Inter", sans-serif, Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: center;
   }
 }
