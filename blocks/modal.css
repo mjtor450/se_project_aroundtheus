@@ -7,11 +7,22 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
   padding: 0 19px;
-  display: none;
+  /* display: none; */
+  /* new changes */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .modal_opened {
-  display: flex;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* new changes */
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal__container {
@@ -98,6 +109,49 @@
 .modal__input {
   font-family: "Inter", sans-serif, Helvetica;
 }
+
+.modal__container-photo {
+  background: transparent;
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.modal__photo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.modal__close-photo {
+  background-image: url(../images/closeIcon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+}
+
+.modal__photo-description {
+  align-self: flex-start;
+  margin-top: 10px;
+  color: #fff;
+  font-family: "Inter", sans-serif, Helvetica;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
 @media (max-width: 630px) {
   .modal__close {
     width: 26px;
@@ -138,5 +192,10 @@
     line-height: 16.94px;
     text-align: center;
     margin-top: 25px;
+  }
+
+  .modal__close-photo {
+    width: 30px;
+    height: 30px;
   }
 }
