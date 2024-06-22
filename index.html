@@ -53,7 +53,7 @@
           type="button"
         ></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" name="profile-form">
           <input
             class="modal__input"
             type="text"
@@ -82,7 +82,7 @@
           type="button"
         ></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form" id="add-card-form">
+        <form class="modal__form" name="card-form" id="add-card-form">
           <input
             class="modal__input modal__input_type_title"
             type="text"
@@ -105,7 +105,10 @@
     <!-- Photo Card Modal -->
     <div class="modal" id="photo-card-modal">
       <div class="modal__container-photo">
-        <button class="modal__close-photo" id="photo-card-close-btn"></button>
+        <button
+          class="modal__close modal__close-photo"
+          id="photo-card-close-btn"
+        ></button>
         <img src="" alt="photo" class="modal__photo" id="photo-card-image" />
         <p class="modal__photo-description" id="photo-card-description"></p>
       </div>
