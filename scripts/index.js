@@ -62,13 +62,10 @@ const cardUrlInput = cardForm.querySelector(".modal__input_type_url");
 // Functions
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  setTimeout(() => {}, 500);
 }
 
 function openModal(modal) {
-  setTimeout(() => {
-    modal.classList.add("modal_opened");
-  }, 10);
+  modal.classList.add("modal_opened");
 }
 
 function getCardElement(cardData) {
