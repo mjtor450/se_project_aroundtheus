@@ -47,14 +47,16 @@ const photoCardModalCloseButton = photoCardModal.querySelector(
 );
 const profileTitle = document.querySelector(".profile__title");
 const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
+  "#edit-profile-description-input"
 );
 const addNewCardButton = document.querySelector(".profile__add-button");
 const photoCardImage = document.querySelector("#photo-card-image");
 const photoCardDescription = document.querySelector("#photo-card-description");
 
 // Form data
-const profileEditTitleInput = document.querySelector("#profile-title-input");
+const profileEditTitleInput = document.querySelector(
+  "#edit-profile-title-input"
+);
 const profileDescription = document.querySelector(".profile__description");
 const cardTitleInput = cardForm.querySelector(".modal__input_type_title");
 const cardUrlInput = cardForm.querySelector(".modal__input_type_url");

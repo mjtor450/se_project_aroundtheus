@@ -194,3 +194,12 @@
     height: 30px;
   }
 }
+
+.popup__input_type_error {
+  border-color: red;
+}
+
+.popup__error_visible {
+  color: red;
+  display: block;
+}
