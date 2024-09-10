@@ -1,11 +1,8 @@
-//
-//
-
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector("#" + inputEl.id + "-error");
   if (!errorMessageEl) {
     console.warn(
-      "No error message element found for input with ID: ${inputEl.id}"
+      `No error message element found for input with ID: ${inputEl.id}`
     );
     return;
   }
@@ -28,6 +25,21 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 }
 
 function checkInputValidity(formEl, inputEl, options) {
+  if (
+    inputEl.name === "title" &&
+    (inputEl.value.length < 1 || inputEl.value.length > 30)
+  ) {
+    inputEl.setCustomValidity("Title must be between 1 and 30 characters.");
+  } else {
+    inputEl.setCustomValidity("");
+  }
+
+  if (inputEl.name === "imageUrl" && !inputEl.validity.typeMismatch) {
+    inputEl.setCustomValidity("");
+  } else if (inputEl.name === "imageUrl") {
+    inputEl.setCustomValidity("Please enter a valid URL.");
+  }
+
   if (!inputEl.validity.valid) {
     return showInputError(formEl, inputEl, options);
   }
@@ -35,30 +47,36 @@ function checkInputValidity(formEl, inputEl, options) {
 }
 
 function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
+  return inputList.some((inputEl) => !inputEl.validity.valid);
 }
-//need to add two more functions
-//disableButton
-//enableButton
+
+function disableButton(buttonEl, inactiveButtonClass) {
+  buttonEl.classList.add(inactiveButtonClass);
+  buttonEl.disabled = true;
+}
+
+function enableButton(buttonEl, inactiveButtonClass) {
+  buttonEl.classList.remove(inactiveButtonClass);
+  buttonEl.disabled = false;
+}
 
 function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
-  let foundInvalid = false;
-
   if (hasInvalidInput(inputEls)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
-    return;
+    disableButton(submitButton, inactiveButtonClass);
+  } else {
+    enableButton(submitButton, inactiveButtonClass);
   }
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
 }
 
 function setEventListeners(formEl, options) {
-  const { inputSelector, inactiveButtonClass } = options;
+  const { inputSelector, inactiveButtonClass, submitButtonSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(options.submitButtonSelector);
+  const submitButton = formEl.querySelector(submitButtonSelector);
+
+  toggleButtonState(inputEls, submitButton, inactiveButtonClass);
+
   inputEls.forEach((inputEl) => {
-    inputEl.addEventListener("input", (e) => {
+    inputEl.addEventListener("input", () => {
       checkInputValidity(formEl, inputEl, options);
       toggleButtonState(inputEls, submitButton, inactiveButtonClass);
     });
@@ -66,23 +84,13 @@ function setEventListeners(formEl, options) {
 }
 
 function enableValidation(options) {
-  const formEl = [...document.querySelectorAll(options.formSelector)];
-  formEl.forEach((formEl) => {
+  const formEls = [...document.querySelectorAll(options.formSelector)];
+  formEls.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
 
     setEventListeners(formEl, options);
-    // look for all inputs inside form
-    // loop through all the inputs to see if all are valid
-    // if input is not valid
-    // get validation message
-    // add error class to input
-    // display error message
-    // disable button
-    // if all are valid
-    // enable button
-    // reset error messages
   });
 }
 
@@ -96,6 +104,3 @@ const config = {
 };
 
 enableValidation(config);
-
-// 1:11:58 need to set up our own spans to add photo.
-// when button is disabled, need to grey it out.

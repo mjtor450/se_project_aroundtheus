@@ -60,27 +60,27 @@
             name="title"
             placeholder="Jacques Cousteau"
             id="edit-profile-title-input"
-            required=""
+            required
             minlength="2"
             maxlength="40"
           />
-          <span class="popup__error" id="profile-title-input-error"></span>
+          <span class="modal__error" id="edit-profile-title-input-error"></span>
           <input
             class="modal__input"
             type="text"
             name="description"
             id="edit-profile-description-input"
             placeholder="Explorer"
-            required=""
+            required
             minlength="2"
             maxlength="200"
           />
           <span
-            class="popup__error"
-            id="profile-description-input-error"
+            class="modal__error"
+            id="edit-profile-description-input-error"
           ></span>
 
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -102,21 +102,25 @@
               name="title"
               placeholder="Title"
               id="card-title-input"
+              required
+              minlength="1"
+              maxlength="30"
             />
-            <span class="modal__error" id="card-name-error"></span>
+            <span class="modal__error" id="card-title-input-error"></span>
           </label>
           <label class="popup__label">
             <input
               class="modal__input modal__input_type_url"
-              type="text"
+              type="url"
               name="url"
               id="card-url-input"
               placeholder="Image URL"
+              required
             />
-            <span class="modal__error" id="card-link-error"></span>
+            <span class="modal__error" id="card-url-input-error"></span>
           </label>
 
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>

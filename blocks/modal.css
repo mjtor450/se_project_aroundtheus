@@ -63,6 +63,7 @@
 
 .modal__form input[type="text"] {
   height: 27px;
+  width: 354px;
   margin: 0;
   margin-bottom: 30px;
   border: none;
@@ -102,6 +103,12 @@
 }
 
 .modal__input {
+  height: 27px;
+  width: 354px;
+  margin: 0;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #000;
   font-family: "Inter", sans-serif, Helvetica;
 }
 
@@ -196,10 +203,31 @@
 }
 
 .popup__input_type_error {
-  border-color: red;
+  border: 2px solid red;
+  height: 27px;
+  width: 354px;
+  margin: 0;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-family: "Inter", sans-serif, Helvetica;
 }
 
 .popup__error_visible {
   color: red;
-  display: block;
+  visibility: visible;
+}
+
+.popup__error {
+  visibility: hidden;
+}
+
+.modal__form input[type="text"].input-error,
+.modal__form input[type="text"]:invalid {
+  border-bottom: 1px solid red !important;
+}
+
+.modal__form input[type="text"].input-error:focus,
+.modal__form input[type="text"]:invalid:focus {
+  border-bottom: 2px solid red !important;
 }
