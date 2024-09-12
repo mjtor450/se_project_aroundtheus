@@ -104,3 +104,38 @@ const config = {
 };
 
 enableValidation(config);
+
+function closePopup(popupEl) {
+  popupEl.classList.remove("modal_opened");
+}
+
+function closePopupOnOverlayClick(popupEl) {
+  popupEl.addEventListener("mousedown", (e) => {
+    if (e.target === popupEl) {
+      closePopup(popupEl);
+    }
+  });
+}
+
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    const openPopup = document.querySelector(".modal_opened");
+    if (openPopup) {
+      closePopup(openPopup);
+    }
+  }
+}
+
+function enablePopupOverlayClose() {
+  const popupEls = [...document.querySelectorAll(".modal")];
+  popupEls.forEach((popupEl) => {
+    closePopupOnOverlayClick(popupEl);
+  });
+}
+
+function enableEscClose() {
+  document.addEventListener("keydown", handleEscKey);
+}
+
+enablePopupOverlayClose();
+enableEscClose();
