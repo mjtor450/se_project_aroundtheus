@@ -62,12 +62,27 @@ const cardTitleInput = cardForm.querySelector(".modal__input_type_title");
 const cardUrlInput = cardForm.querySelector(".modal__input_type_url");
 
 // Functions
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    const openPopup = document.querySelector(".modal_opened");
+    if (openPopup) {
+      closePopup(openPopup);
+    }
+  }
+}
+
+function closePopup(popupEl) {
+  popupEl.classList.remove("modal_opened");
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKey);
 }
 
 function getCardElement(cardData) {

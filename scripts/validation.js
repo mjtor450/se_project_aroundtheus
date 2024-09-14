@@ -25,21 +25,6 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 }
 
 function checkInputValidity(formEl, inputEl, options) {
-  if (
-    inputEl.name === "title" &&
-    (inputEl.value.length < 1 || inputEl.value.length > 30)
-  ) {
-    inputEl.setCustomValidity("Title must be between 1 and 30 characters.");
-  } else {
-    inputEl.setCustomValidity("");
-  }
-
-  if (inputEl.name === "imageUrl" && !inputEl.validity.typeMismatch) {
-    inputEl.setCustomValidity("");
-  } else if (inputEl.name === "imageUrl") {
-    inputEl.setCustomValidity("Please enter a valid URL.");
-  }
-
   if (!inputEl.validity.valid) {
     return showInputError(formEl, inputEl, options);
   }
@@ -99,15 +84,11 @@ const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
+  inputErrorClass: "modal__input_type_error",
   errorClass: "popup__error_visible",
 };
 
 enableValidation(config);
-
-function closePopup(popupEl) {
-  popupEl.classList.remove("modal_opened");
-}
 
 function closePopupOnOverlayClick(popupEl) {
   popupEl.addEventListener("mousedown", (e) => {
@@ -115,15 +96,6 @@ function closePopupOnOverlayClick(popupEl) {
       closePopup(popupEl);
     }
   });
-}
-
-function handleEscKey(e) {
-  if (e.key === "Escape") {
-    const openPopup = document.querySelector(".modal_opened");
-    if (openPopup) {
-      closePopup(openPopup);
-    }
-  }
 }
 
 function enablePopupOverlayClose() {

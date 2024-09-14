@@ -95,7 +95,7 @@
         ></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" name="card-form" id="add-card-form">
-          <label class="popup__label">
+          <label class="modal__label">
             <input
               class="modal__input modal__input_type_title"
               type="text"
@@ -106,9 +106,12 @@
               minlength="1"
               maxlength="30"
             />
-            <span class="modal__error" id="card-title-input-error"></span>
+            <span
+              class="modal__error popup__error_visible"
+              id="card-title-input-error"
+            ></span>
           </label>
-          <label class="popup__label">
+          <label class="modal__label">
             <input
               class="modal__input modal__input_type_url"
               type="url"
@@ -116,11 +119,14 @@
               id="card-url-input"
               placeholder="Image URL"
               required
+              pattern="https?://.+"
             />
             <span class="modal__error" id="card-url-input-error"></span>
           </label>
 
-          <button class="modal__button" type="submit">Save</button>
+          <button class="modal__button popup__button_disabled" type="submit">
+            Save
+          </button>
         </form>
       </div>
     </div>
