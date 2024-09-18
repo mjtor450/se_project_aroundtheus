@@ -27,9 +27,7 @@ function enableEscClose() {
   document.addEventListener("keydown", handleEscKey);
 }
 
-// Enable close on ESC and overlay click
 enablePopupOverlayClose();
-enableEscClose();
 
 // Cards and other DOM manipulations
 const initialCards = [
@@ -104,12 +102,23 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
+}
 
+function openFormModal(modal) {
+  openModal(modal);
   const form = modal.querySelector(".modal__form");
   if (form) {
     const inputEls = [...form.querySelectorAll(config.inputSelector)];
     const submitButton = form.querySelector(config.submitButtonSelector);
     toggleButtonState(inputEls, submitButton, config.inactiveButtonClass);
+  }
+}
+
+function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
+  if (hasInvalidInput(inputEls)) {
+    disableButton(submitButton, inactiveButtonClass);
+  } else {
+    enableButton(submitButton, inactiveButtonClass);
   }
 }
 
@@ -167,7 +176,7 @@ function handleAddCardFormSubmit(evt) {
 profileEditButton.addEventListener("click", () => {
   profileEditTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  openModal(editProfileModal);
+  openFormModal(editProfileModal);
 });
 
 // Universal handler for closing modals
@@ -182,7 +191,7 @@ profileForm.addEventListener("submit", handleProfileEditSubmit);
 cardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 // add new card button
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", () => openFormModal(addCardModal));
 
 // Initial render of cards
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
