@@ -90,6 +90,10 @@ const config = {
 
 enableValidation(config);
 
+function closePopup(popupEl) {
+  popupEl.classList.remove("modal_opened");
+}
+
 function closePopupOnOverlayClick(popupEl) {
   popupEl.addEventListener("mousedown", (e) => {
     if (e.target === popupEl) {

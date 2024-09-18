@@ -27,7 +27,9 @@
   padding: 34px 36px 36.51px;
   border-radius: 10px;
   width: 430px;
-  height: 330px;
+  /* height: 330px; */
+  /* this allows button to stay inside but */
+  /* shifts when error message shows */
   box-sizing: border-box;
 }
 
@@ -65,8 +67,8 @@
 .modal__form input[type="url"] {
   height: 27px;
   width: -webkit-fill-available;
-  margin: 0;
-  margin-bottom: 30px;
+  /* margin: 0; */
+  /* margin-bottom: 30px; */
   border: none;
   border-bottom: 1px solid #000;
   font-family: "Inter", sans-serif, Helvetica;
@@ -84,10 +86,19 @@
 
 .popup__error {
   visibility: hidden;
+  font-size: 12px;
+  line-height: 15px;
+  color: #f00;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
 }
 
 .popup__error_visible {
-  color: red;
+  font-family: "Inter", sans-serif, Helvetica;
+  text-align: left;
+  opacity: 1;
   visibility: visible;
 }
 
@@ -146,6 +157,7 @@
   font-size: 18px;
   line-height: 21.78px;
   text-align: center;
+  margin-top: 30px;
 }
 
 @media (max-width: 630px) {
@@ -199,4 +211,27 @@
   .modal__form input[type="url"] {
     width: -webkit-fill-available;
   }
+}
+
+.modal__form .modal__input_type_error:nth-of-type(2) {
+  margin-top: 30px;
+}
+
+.modal__form input[type="url"] {
+  margin-top: 30px;
+}
+.modal__input_description {
+  margin-top: 30px;
+}
+
+.modal__error {
+  min-height: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  display: block;
+  color: red;
+  /* opacity: 0; */
+  transition: opacity 0.3s ease;
+  height: 10px;
 }

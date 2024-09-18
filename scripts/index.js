@@ -71,10 +71,6 @@ function handleEscKey(e) {
   }
 }
 
-function closePopup(popupEl) {
-  popupEl.classList.remove("modal_opened");
-}
-
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
