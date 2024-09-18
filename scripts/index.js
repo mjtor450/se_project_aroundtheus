@@ -1,3 +1,37 @@
+// Functions for handling modals and closing them
+function closePopupOnOverlayClick(popupEl) {
+  popupEl.addEventListener("mousedown", (e) => {
+    if (e.target === popupEl) {
+      closeModal(popupEl);
+    }
+  });
+}
+
+function enablePopupOverlayClose() {
+  const popupEls = [...document.querySelectorAll(".modal")];
+  popupEls.forEach((popupEl) => {
+    closePopupOnOverlayClick(popupEl);
+  });
+}
+
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    const openPopup = document.querySelector(".modal_opened");
+    if (openPopup) {
+      closeModal(openPopup);
+    }
+  }
+}
+
+function enableEscClose() {
+  document.addEventListener("keydown", handleEscKey);
+}
+
+// Enable close on ESC and overlay click
+enablePopupOverlayClose();
+enableEscClose();
+
+// Cards and other DOM manipulations
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -62,15 +96,6 @@ const cardTitleInput = cardForm.querySelector(".modal__input_type_title");
 const cardUrlInput = cardForm.querySelector(".modal__input_type_url");
 
 // Functions
-function handleEscKey(e) {
-  if (e.key === "Escape") {
-    const openPopup = document.querySelector(".modal_opened");
-    if (openPopup) {
-      closePopup(openPopup);
-    }
-  }
-}
-
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
@@ -79,6 +104,13 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
+
+  const form = modal.querySelector(".modal__form");
+  if (form) {
+    const inputEls = [...form.querySelectorAll(config.inputSelector)];
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    toggleButtonState(inputEls, submitButton, config.inactiveButtonClass);
+  }
 }
 
 function getCardElement(cardData) {

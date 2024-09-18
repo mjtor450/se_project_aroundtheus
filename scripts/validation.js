@@ -83,35 +83,9 @@ const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "popup__button_disabled",
+  inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
-  errorClass: "popup__error_visible",
+  errorClass: "modal__error_visible",
 };
 
 enableValidation(config);
-
-function closePopup(popupEl) {
-  popupEl.classList.remove("modal_opened");
-}
-
-function closePopupOnOverlayClick(popupEl) {
-  popupEl.addEventListener("mousedown", (e) => {
-    if (e.target === popupEl) {
-      closePopup(popupEl);
-    }
-  });
-}
-
-function enablePopupOverlayClose() {
-  const popupEls = [...document.querySelectorAll(".modal")];
-  popupEls.forEach((popupEl) => {
-    closePopupOnOverlayClick(popupEl);
-  });
-}
-
-function enableEscClose() {
-  document.addEventListener("keydown", handleEscKey);
-}
-
-enablePopupOverlayClose();
-enableEscClose();
