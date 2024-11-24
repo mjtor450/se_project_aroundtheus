@@ -2,6 +2,12 @@ export default class FormValidator {
   constructor(settings, formEl) {
     this._settings = settings;
     this._formEl = formEl;
+    this._inputEls = [
+      ...this._formEl.querySelectorAll(this._settings.inputSelector),
+    ];
+    this._submitButton = this._formEl.querySelector(
+      this._settings.submitButtonSelector
+    );
   }
 
   _showInputError(inputEl) {
@@ -26,30 +32,23 @@ export default class FormValidator {
     }
   }
 
-  _toggleButtonState(inputEls, submitButton) {
-    if (inputEls.some((inputEl) => !inputEl.validity.valid)) {
-      submitButton.classList.add(this._settings.inactiveButtonClass);
-      submitButton.disabled = true;
+  _toggleButtonState() {
+    if (this._inputEls.some((inputEl) => !inputEl.validity.valid)) {
+      this._submitButton.classList.add(this._settings.inactiveButtonClass);
+      this._submitButton.disabled = true;
     } else {
-      submitButton.classList.remove(this._settings.inactiveButtonClass);
-      submitButton.disabled = false;
+      this._submitButton.classList.remove(this._settings.inactiveButtonClass);
+      this._submitButton.disabled = false;
     }
   }
 
   _setEventListeners() {
-    const inputEls = [
-      ...this._formEl.querySelectorAll(this._settings.inputSelector),
-    ];
-    const submitButton = this._formEl.querySelector(
-      this._settings.submitButtonSelector
-    );
+    this._toggleButtonState(); // Ensure the button starts in the correct state
 
-    this._toggleButtonState(inputEls, submitButton);
-
-    inputEls.forEach((inputEl) => {
+    this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState(inputEls, submitButton);
+        this._toggleButtonState();
       });
     });
   }
@@ -57,5 +56,14 @@ export default class FormValidator {
   enableValidation() {
     this._formEl.addEventListener("submit", (e) => e.preventDefault());
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    // Clear all input errors
+    this._inputEls.forEach((inputEl) => {
+      this._hideInputError(inputEl);
+    });
+    // Reset the submit button state
+    this._toggleButtonState();
   }
 }

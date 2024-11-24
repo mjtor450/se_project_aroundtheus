@@ -1,3 +1,6 @@
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+
 // Functions for handling modals and closing them
 function closePopupOnOverlayClick(popupEl) {
   popupEl.addEventListener("mousedown", (e) => {
@@ -23,14 +26,7 @@ function handleEscKey(e) {
   }
 }
 
-function enableEscClose() {
-  document.addEventListener("keydown", handleEscKey);
-}
-
 enablePopupOverlayClose();
-
-import FormValidator from "../components/FormValidator.js";
-import Card from "../components/Card.js";
 
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
@@ -84,23 +80,10 @@ function openModal(modal) {
   document.addEventListener("keydown", handleEscKey);
 }
 
-function openFormModal(modal) {
+function openFormModal(modal, validator) {
   openModal(modal);
-  const form = modal.querySelector(".modal__form");
-  if (form) {
-    const inputEls = [...form.querySelectorAll(config.inputSelector)];
-    const submitButton = form.querySelector(config.submitButtonSelector);
-    toggleButtonState(inputEls, submitButton, config.inactiveButtonClass);
-  }
-}
-
-function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
-  if (inputEls.some((inputEl) => !inputEl.validity.valid)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
-  } else {
-    submitButton.classList.remove(inactiveButtonClass);
-    submitButton.disabled = false;
+  if (validator) {
+    validator.resetValidation();
   }
 }
 
@@ -111,37 +94,44 @@ function handleProfileEditSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-function renderCard(cardData, wrapper) {
+function createCard(cardData) {
   const card = new Card(cardData, "#card-template", (name, link) => {
     photoCardImage.src = link;
     photoCardImage.alt = name;
     photoCardDescription.textContent = name;
     openModal(photoCardModal);
   });
-  wrapper.prepend(card.getView());
+  return card.getView();
 }
+
+function renderCard(cardData, wrapper) {
+  const cardElement = createCard(cardData);
+  wrapper.prepend(cardElement);
+}
+
+// Reuse title and link input elements
+const titleInput = cardForm.querySelector(".modal__input_type_title");
+const linkInput = cardForm.querySelector(".modal__input_type_url");
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const titleValue = cardForm.querySelector(".modal__input_type_title").value;
-  const urlValue = cardForm.querySelector(".modal__input_type_url").value;
+  const titleValue = titleInput.value;
+  const urlValue = linkInput.value;
   renderCard({ name: titleValue, link: urlValue }, cardsWrap);
   closeModal(addCardModal);
   cardForm.reset();
-
-  const submitButton = cardForm.querySelector(config.submitButtonSelector);
-  submitButton.classList.add(config.inactiveButtonClass);
-  submitButton.disabled = true;
 }
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
-  profileEditTitleInput.value = profileTitle.textContent; // Populate the title input with the current title
-  profileDescriptionInput.value = profileDescription.textContent; // Populate the description input with the current description
-  openFormModal(editProfileModal);
+  profileEditTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  openFormModal(editProfileModal, profileFormValidator);
 });
 
-addNewCardButton.addEventListener("click", () => openFormModal(addCardModal));
+addNewCardButton.addEventListener("click", () =>
+  openFormModal(addCardModal, cardFormValidator)
+);
 
 profileForm.addEventListener("submit", handleProfileEditSubmit);
 cardForm.addEventListener("submit", handleAddCardFormSubmit);
