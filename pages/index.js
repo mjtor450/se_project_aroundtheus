@@ -45,10 +45,13 @@ const cardForm = document.forms["card-form"];
 // Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+const profileEditTitleInput = document.querySelector(
+  "#edit-profile-title-input"
+);
 const profileDescriptionInput = document.querySelector(
   "#edit-profile-description-input"
 );
-const profileDescription = document.querySelector(".profile__description");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const photoCardImage = document.querySelector("#photo-card-image");
 const photoCardDescription = document.querySelector("#photo-card-description");
@@ -103,7 +106,7 @@ function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
 
 function handleProfileEditSubmit(evt) {
   evt.preventDefault();
-  profileTitle.textContent = profileDescriptionInput.value;
+  profileTitle.textContent = profileEditTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(editProfileModal);
 }
@@ -133,8 +136,8 @@ function handleAddCardFormSubmit(evt) {
 
 // Event Listeners
 profileEditButton.addEventListener("click", () => {
-  profileDescriptionInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  profileEditTitleInput.value = profileTitle.textContent; // Populate the title input with the current title
+  profileDescriptionInput.value = profileDescription.textContent; // Populate the description input with the current description
   openFormModal(editProfileModal);
 });
 
